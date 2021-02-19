@@ -4,7 +4,7 @@ services:
     image: bitwardenrs/server
     restart: unless-stopped
     environment: 
-      - ADMIN_TOKEN=UEw4pAL06hBJzksPZKiHaXDLMGpVKvv1e3qznJ4oTvGTK9nZkIGKr/ccb895jD4E
+      #- ADMIN_TOKEN=<RANDOM TOKEN>  #cmd: openssl rand -base64 48
       - SIGNUPS_ALLOWED=false 
     volumes:
       - ./data:/data
