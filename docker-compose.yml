@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+  bitwarden:
+    image: bitwardenrs/server
+    restart: unless-stopped
+    environment: 
+      - ADMIN_TOKEN=UEw4pAL06hBJzksPZKiHaXDLMGpVKvv1e3qznJ4oTvGTK9nZkIGKr/ccb895jD4E
+      - SIGNUPS_ALLOWED=false 
+    volumes:
+      - ./data:/data
+    labels:
+      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.netwin.one`)"
+      - "traefik.http.routers.bitwarden.entryPoints=websecure"
+      - "traefik.http.routers.bitwarden.tls.certResolver=lehome"
+      - "traefik.http.services.bitwarden.loadbalancer.server.port=80"
+      - "traefik.enable=true"
+    networks:
+      - internal
+
+networks:
+  internal:
+    external: true
